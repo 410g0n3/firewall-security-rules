@@ -1,4 +1,8 @@
 /ip firewall filter
+add action=accept chain=input comment=\
+    "Puertos abiertos para el acceso VPN a traves de L2TP" dst-port=\
+    1701,500,501 protocol=udp
+add action=accept chain=input protocol=ipsec-esp
 add action=add-src-to-address-list address-list="Escaner de Puertos" \
     address-list-timeout=2w chain=input comment=\
     "Listar como escaner de puertos" protocol=tcp psd=21,3s,3,1
